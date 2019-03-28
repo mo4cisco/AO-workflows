@@ -1,194 +1,138 @@
 {
-  "workflow": {
-    "unique_name": "definition_workflow_015URNF79BAQH0TyYQ0ANRjYPKOjult9fYV",
-    "name": "GetTenantMetrics",
-    "title": "GetTenantMetrics",
-    "type": "generic.workflow",
-    "base_type": "workflow",
-    "variables": [
+  "workflow":{
+    "unique_name":"definition_workflow_015URNF79BAQH0TyYQ0ANRjYPKOjult9fYV",
+    "name":"GetTenantMetrics",
+    "title":"GetTenantMetrics",
+    "type":"generic.workflow",
+    "base_type":"workflow",
+    "variables":[
       {
-        "schema_id": "datatype.string",
-        "properties": {
-          "value": "",
-          "scope": "input",
-          "name": "startDate",
-          "type": "datatype.string"
+        "schema_id":"datatype.string",
+        "properties":{
+          "value":"",
+          "scope":"input",
+          "name":"startDate",
+          "type":"datatype.string"
         },
-        "unique_name": "variable_workflow_015WK8MIH4VPV6kwT1vbepYlzrZAPS26s0V",
-        "object_type": "variable_workflow"
+        "unique_name":"variable_workflow_015WK8MIH4VPV6kwT1vbepYlzrZAPS26s0V",
+        "object_type":"variable_workflow"
       },
       {
-        "schema_id": "datatype.string",
-        "properties": {
-          "value": "",
-          "scope": "input",
-          "name": "endDate",
-          "type": "datatype.string"
+        "schema_id":"datatype.string",
+        "properties":{
+          "value":"",
+          "scope":"input",
+          "name":"endDate",
+          "type":"datatype.string"
         },
-        "unique_name": "variable_workflow_015WK8QZRV0487idF3EiCrnOYlpZa1SeOKt",
-        "object_type": "variable_workflow"
+        "unique_name":"variable_workflow_015WK8QZRV0487idF3EiCrnOYlpZa1SeOKt",
+        "object_type":"variable_workflow"
       }
     ],
-    "properties": {
-      "atomic": {
-        "is_atomic": false
+    "properties":{
+      "atomic":{
+        "is_atomic":false
       },
-      "delete_workflow_instance": false,
-      "display_name": "GetTenantMetrics",
-      "favorite": false,
-      "target": {
-        "execute_on_target_group": false,
-        "execute_on_workflow_target": false,
-        "no_target": true,
-        "specify_on_workflow_start": false
+      "delete_workflow_instance":false,
+      "display_name":"GetTenantMetrics",
+      "favorite":false,
+      "target":{
+        "execute_on_target_group":false,
+        "execute_on_workflow_target":false,
+        "no_target":true,
+        "specify_on_workflow_start":false
       }
     },
-    "object_type": "definition_workflow",
-    "actions": [
+    "object_type":"definition_workflow",
+    "actions":[
       {
-        "unique_name": "definition_activity_015URNPF60ZC96idq4VcstdbyJf0ncKnkke",
-        "name": "Generic CCS API Request",
-        "title": "Get list of subtenants",
-        "type": "ccs.api_request",
-        "base_type": "activity",
-        "properties": {
-          "action_timeout": 180,
-          "api_call_method": "GET",
-          "continue_on_failure": false,
-          "display_name": "Get list of subtenants",
-          "relative_url": "suite-idm/api/v1/tenants",
-          "runtime_user": {
-            "override_target_runtime_user": false,
-            "target_default": true
+        "unique_name":"definition_activity_015URNPF60ZC96idq4VcstdbyJf0ncKnkke",
+        "name":"Generic CCS API Request",
+        "title":"Get list of subtenants",
+        "type":"ccs.api_request",
+        "base_type":"activity",
+        "properties":{
+          "action_timeout":180,
+          "api_call_method":"GET",
+          "continue_on_failure":false,
+          "display_name":"Get list of subtenants",
+          "relative_url":"suite-idm/api/v1/tenants",
+          "runtime_user":{
+            "override_target_runtime_user":false,
+            "target_default":true
           },
-          "target": {
-            "override_workflow_target": true,
-            "target_id": "definition_target_01f9IQgvQRJv3tvlqwR145Bbrye0toH0Q"
+          "target":{
+            "override_workflow_target":true,
+            "target_id":"definition_target_01f9IQgvQRJv3tvlqwR145Bbrye0toH0Q"
           }
         },
-        "object_type": "definition_activity"
+        "object_type":"definition_activity"
       },
       {
-        "unique_name": "definition_activity_015WJD6BI6CXG6ZjIX4l63TpQSPYssXeOFs",
-        "name": "Read Table from JSON",
-        "title": "Read Table from JSON",
-        "type": "corejava.read_table_from_json",
-        "base_type": "activity",
-        "properties": {
-          "action_timeout": 180,
-          "continue_on_failure": false,
-          "display_name": "Read Table from JSON",
-          "input_json": "$activity.definition_activity_015URNPF60ZC96idq4VcstdbyJf0ncKnkke.output.response_body$",
-          "jsonpath_query": "$.[*]",
-          "persist_output": true,
-          "populate_columns": false,
-          "table_columns": [
+        "unique_name":"definition_activity_015WJD6BI6CXG6ZjIX4l63TpQSPYssXeOFs",
+        "name":"Read Table from JSON",
+        "title":"Read Table from JSON",
+        "type":"corejava.read_table_from_json",
+        "base_type":"activity",
+        "properties":{
+          "action_timeout":180,
+          "continue_on_failure":false,
+          "display_name":"Read Table from JSON",
+          "input_json":"$activity.definition_activity_015URNPF60ZC96idq4VcstdbyJf0ncKnkke.output.response_body$",
+          "jsonpath_query":"$.[*]",
+          "persist_output":true,
+          "populate_columns":false,
+          "table_columns":[
             {
-              "column_name": "id",
-              "column_type": "integer",
-              "zdate_type_format": ""
+              "column_name":"id",
+              "column_type":"integer",
+              "zdate_type_format":""
             }
           ]
         },
-        "object_type": "definition_activity"
+        "object_type":"definition_activity"
       },
       {
-        "unique_name": "definition_activity_015WJG1RXN9EE1fmSAe3Y7SpIYHiBnefB2z",
-        "name": "For Each",
-        "title": "For Each sub Tenant",
-        "type": "logic.for_each",
-        "base_type": "activity",
-        "properties": {
-          "continue_on_failure": false,
-          "display_name": "For Each sub Tenant",
-          "source_array": "$activity.definition_activity_015WJD6BI6CXG6ZjIX4l63TpQSPYssXeOFs.output.read_table_from_json$"
+        "unique_name":"definition_activity_015WJG1RXN9EE1fmSAe3Y7SpIYHiBnefB2z",
+        "name":"For Each",
+        "title":"For Each sub Tenant",
+        "type":"logic.for_each",
+        "base_type":"activity",
+        "properties":{
+          "continue_on_failure":false,
+          "display_name":"For Each sub Tenant",
+          "source_array":"$activity.definition_activity_015WJD6BI6CXG6ZjIX4l63TpQSPYssXeOFs.output.read_table_from_json$"
         },
-        "object_type": "definition_activity",
-        "actions": [
+        "object_type":"definition_activity",
+        "actions":[
           {
-            "unique_name": "definition_activity_015WJ3S0O9YOO0x2dSygkLiI4gq7RkJT5V9",
-            "name": "Generic CCS API Request",
-            "title": "GetTenantMetrics",
-            "type": "ccs.api_request",
-            "base_type": "activity",
-            "properties": {
-              "action_timeout": 180,
-              "api_call_method": "GET",
-              "continue_on_failure": false,
-              "display_name": "GetTenantMetrics",
-              "relative_url": "cloudcenter-shared-api/api/v1/saasTenantMetrics?offering=WorkloadManager\u0026startDate=$workflow.definition_workflow_015URNF79BAQH0TyYQ0ANRjYPKOjult9fYV.input.variable_workflow_015WK8MIH4VPV6kwT1vbepYlzrZAPS26s0V$\u0026endDate=$workflow.definition_workflow_015URNF79BAQH0TyYQ0ANRjYPKOjult9fYV.input.variable_workflow_015WK8QZRV0487idF3EiCrnOYlpZa1SeOKt$\u0026tenantId=$activity.definition_activity_015WJG1RXN9EE1fmSAe3Y7SpIYHiBnefB2z.input.source_array[@].id$",
-              "runtime_user": {
-                "override_target_runtime_user": false,
-                "target_default": true
+            "unique_name":"definition_activity_015WJ3S0O9YOO0x2dSygkLiI4gq7RkJT5V9",
+            "name":"Generic CCS API Request",
+            "title":"GetTenantMetrics",
+            "type":"ccs.api_request",
+            "base_type":"activity",
+            "properties":{
+              "action_timeout":180,
+              "api_call_method":"GET",
+              "continue_on_failure":false,
+              "display_name":"GetTenantMetrics",
+              "relative_url":"cloudcenter-shared-api/api/v1/saasTenantMetrics?offering=WorkloadManager&startDate=$workflow.definition_workflow_015URNF79BAQH0TyYQ0ANRjYPKOjult9fYV.input.variable_workflow_015WK8MIH4VPV6kwT1vbepYlzrZAPS26s0V$&endDate=$workflow.definition_workflow_015URNF79BAQH0TyYQ0ANRjYPKOjult9fYV.input.variable_workflow_015WK8QZRV0487idF3EiCrnOYlpZa1SeOKt$&tenantId=$activity.definition_activity_015WJG1RXN9EE1fmSAe3Y7SpIYHiBnefB2z.input.source_array[@].id$",
+              "runtime_user":{
+                "override_target_runtime_user":false,
+                "target_default":true
               },
-              "target": {
-                "override_workflow_target": true,
-                "target_id": "definition_target_01f9IQgvQRJv3tvlqwR145Bbrye0toH0Q"
+              "target":{
+                "override_workflow_target":true,
+                "target_id":"definition_target_01f9IQgvQRJv3tvlqwR145Bbrye0toH0Q"
               }
             },
-            "object_type": "definition_activity"
-          },
-          {
-            "unique_name": "definition_activity_015WJIBNE11M241iggXXBsxBhlqtUpCn6QC",
-            "name": "Send Email",
-            "title": "Send Email",
-            "type": "email.smtp_send_email",
-            "base_type": "activity",
-            "properties": {
-              "action_timeout": 180,
-              "body": "$activity.definition_activity_015WJ3S0O9YOO0x2dSygkLiI4gq7RkJT5V9.output.response_body$",
-              "continue_on_failure": false,
-              "description": "Test",
-              "display_name": "Send Email",
-              "html": false,
-              "runtime_user": {
-                "override_target_runtime_user": false,
-                "target_default": true
-              },
-              "subject": "Billing Test",
-              "target": {
-                "override_workflow_target": true,
-                "target_id": "definition_target_015EK7K2ZOKQ81HjEnyVR0BDZyjM8pxbCsD"
-              },
-              "to": "muranant@cisco.com"
-            },
-            "object_type": "definition_activity"
+            "object_type":"definition_activity"
           }
         ]
       }
     ],
-    "categories": [
+    "categories":[
       "category_1BMfMXSnJMyt5Ihqi7rWJr5N8cf"
     ]
-  },
-  "targets": {
-    "definition_target_015EK7K2ZOKQ81HjEnyVR0BDZyjM8pxbCsD": {
-      "unique_name": "definition_target_015EK7K2ZOKQ81HjEnyVR0BDZyjM8pxbCsD",
-      "name": "CCSDemoSMTP",
-      "title": "CCSDemoSMTP",
-      "type": "email.smtp_endpoint",
-      "base_type": "target",
-      "object_type": "definition_target",
-      "properties": {
-        "default_runtime_user_id": "definition_runtime_user_015EK1KOIJRC55yvjnXEDHc9bDthG44ZtHy",
-        "display_name": "CCSDemoSMTP",
-        "port": 465,
-        "protocol": "SMTP",
-        "server": "smtp.gmail.com"
-      }
-    }
-  },
-  "runtime_users": {
-    "definition_runtime_user_015EK1KOIJRC55yvjnXEDHc9bDthG44ZtHy": {
-      "unique_name": "definition_runtime_user_015EK1KOIJRC55yvjnXEDHc9bDthG44ZtHy",
-      "name": "CCSDemoEmailCreds",
-      "title": "CCSDemoEmailCreds",
-      "type": "runtime_user.email_credentials",
-      "base_type": "runtime_user",
-      "object_type": "definition_runtime_user",
-      "properties": {
-        "display_name": "CCSDemoEmailCreds"
-      }
-    }
   }
 }
